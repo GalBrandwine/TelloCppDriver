@@ -5,9 +5,9 @@
  * @brief This is an example for creating user observer and attaching it to TelloDriver.
  * This class can be attached to:
  * * a specific IPositionVelocityObserver, for getting new Pose and velocity
- * * a specific IImuAttitudeObserver, for getting new Imu gyre attitude ans such.
+ * * a specific IImuAttitudeObserver, for getting new Imu gyro attitude and such.
  * * a specific IFlightDataObserver, for getting new flight data like battery %, and some flags like "flight_data_extras.battery_low".
- * * and to a generic IObserver, for getting standart std::vector<unsigned char> and interprating it the user way.
+ * * and to a generic IObserver, for getting standard std::vector<unsigned char> and interpreting it the user way.
  */
 class PosObserver : public IPositionVelocityObserver,
                     public IFlightDataObserver,
@@ -17,7 +17,7 @@ public:
     /**
      * @brief Must be overriden.
      * 
-     * @param[in] message_from_subject - data filled with information relenavt to this observer.
+     * @param[in] message_from_subject - data filled with information relent to this observer.
      */
     void Update(const tello_protocol::ImuAttitudeData &imu_attitude) override;
     void Update(const tello_protocol::FlightDataStruct &flight_data) override;

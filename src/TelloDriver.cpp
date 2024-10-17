@@ -69,10 +69,10 @@ void TelloDriver::ManualTakeoff()
 }
 void TelloDriver::Flip(tello_protocol::FlipDirections direction)
 {
-    auto current_battery_precentage = m_DataManager.GetFlightData().battery_percentage;
+    auto current_battery_percentage = m_DataManager.GetFlightData().battery_percentage;
     auto low_battery_thresh = m_DataManager.GetFlightData().low_battery_threshold;
 
-    if (current_battery_precentage <= low_battery_thresh)
+    if (current_battery_percentage <= low_battery_thresh)
     {
         m_BaseLogger->warn("Battery below low_battery_thresh [{}]. Not flipping", low_battery_thresh);
     }

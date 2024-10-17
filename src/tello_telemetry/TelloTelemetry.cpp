@@ -30,7 +30,7 @@ namespace tello_protocol
         m_logger->debug("There are " + std::to_string(list_observer_.size()) + " observers in the list.\n");
     }
 
-    bool TelloTelemetry::process_data(const std::vector<unsigned char> &data)
+    bool TelloTelemetry::legacy_process_data(const std::vector<unsigned char> &data)
     {
         auto received = tello_protocol::Packet(data);
 
@@ -180,7 +180,7 @@ namespace tello_protocol
                  * @todo Move all processing into attached observers.
                  * 
                  */
-                if (!process_data(m_received_data))
+                if (!legacy_process_data(m_received_data))
                 {
                     m_logger->error("Could not process data! Dumping:\n {DATA SUPPOSE TO BE HERE}");
                 }
@@ -295,7 +295,7 @@ namespace tello_protocol
         m_logger->debug(m_logger->name() + " Listener thread started");
     }
 
-    void TelloTelemetry::SetSocket(std::shared_ptr<IReciever> socket)
+    void TelloTelemetry::SetSocket(std::shared_ptr<IReceiver> socket)
     {
         m_socket = socket;
     }

@@ -239,7 +239,7 @@ void Examples::StartScenario4()
 
     while (m_FlightData.fly_mode == tello_protocol::FlyModes::TAKING_OFF)
     {
-        m_tello.GetLogger()->info("Takingoff. Current fly_mode: {}", std::to_string(m_FlightData.fly_mode));
+        m_tello.GetLogger()->info("Takeoff. Current fly_mode: {}", std::to_string(m_FlightData.fly_mode));
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
     m_tello.GetLogger()->info("{} reached", tello_protocol::FlyModes::ToName(m_FlightData.fly_mode));

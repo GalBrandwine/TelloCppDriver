@@ -15,7 +15,7 @@ namespace tello_protocol
     public:
         /**
          * \section Movements-section
-         * @brief Lowlevel movements, involves simple body related movement's
+         * @brief Low level movements, involves simple body related movement's
          * 
          * @brief Controls the vertical up and down motion of the drone.
          * 

@@ -76,7 +76,7 @@ int main()
 
     while (examples.GetExampleFlightData().fly_mode == tello_protocol::FlyModes::TAKING_OFF)
     {
-        tello.GetLogger()->info("Takingoff. Current fly_mode: {} [{}]", tello_protocol::FlyModes::ToName(examples.GetExampleFlightData().fly_mode), std::to_string(examples.GetExampleFlightData().fly_mode));
+        tello.GetLogger()->info("Takeoff. Current fly_mode: {} [{}]", tello_protocol::FlyModes::ToName(examples.GetExampleFlightData().fly_mode), std::to_string(examples.GetExampleFlightData().fly_mode));
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
     tello.GetLogger()->info("{} reached", tello_protocol::FlyModes::ToName(examples.GetExampleFlightData().fly_mode));
@@ -127,6 +127,6 @@ int main()
     return 0;
 }
 
-/** \example manual_manouvers.cpp
+/** \example manual_maneuvers.cpp
  * Adding this footer will make sure that doxygen adds this source file to examples
 */

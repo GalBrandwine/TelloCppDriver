@@ -60,7 +60,7 @@ public:
     void Forward(int amount);
     /**
      * \section Movements-section
-     * @brief Lowlevel movements, involves simple body related movement's
+     * @brief Low level movements, involves simple body related movement's
      * 
      * @brief Controls the vertical up and down motion of the drone.
      * 
@@ -178,14 +178,14 @@ private:
 
     /**
      * @brief TelloLogHeaderMsgObserver attached to telloTelemetry via ISubject interface.
-     * It being callback upon new data arival to TelloTelemtry. 
+     * It being callback upon new data arrival to TelloTelemetry. 
      * Then parse this new data, and insert it to TelloDataManager through ILogHeaderMsgDataManager interface.
      */
     std::shared_ptr<IObserver> m_TelloLogHeaderMsgObserver;
 
     /**
      * @brief TelloLogDataMsgObserver attached to TelloTelemetry via ISubject interface.
-     * It being callback upon new data arival to TelloTelemtry. 
+     * It being callback upon new data arrival to TelloTelemetry. 
      * 
      * 1. Upon callback, it creates LogData object, then pass raw_data into this LogData.
      * 2. Pass this LogData (filled with processed log data E.G position, velocity etc) into TelloDataManager:
@@ -216,7 +216,7 @@ private:
 
     /**
      * @brief TelloStickCommandsObserver attached to telloTelemetry via ISubject interface.
-     * It being callback upon new data arival to TelloTelemtry. And send stick commands
+     * It being callback upon new data arrival to TelloTelemetry. And send stick commands
      * 
      * @note this callback acts as a heartbeat back to the drone, if not sent the drone will stand still and blink on ORANGE.
      */
