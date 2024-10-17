@@ -42,3 +42,4 @@ docs/doxygen/
 # End of https://www.toptal.com/developers/gitignore/api/c++
 *.json
 log/latest
+lib/asio-1.18.0/

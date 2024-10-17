@@ -101,7 +101,7 @@ Not all TelloPy capabilities were implemented.
 git clone https://github.com/GalBrandwine/tello_driver.git
 cd tello_driver
 mkdir build && cd build
-cmake ..  && make -j # Or, for debugging: cmake .. -DCMAKE_BUILD_TYPE=Debug && make -j
+cmake ..  && make -j $(nproc) # Or, for debugging: cmake .. -DCMAKE_BUILD_TYPE=Debug && make -j
 ```
 
 ## Running the examples
