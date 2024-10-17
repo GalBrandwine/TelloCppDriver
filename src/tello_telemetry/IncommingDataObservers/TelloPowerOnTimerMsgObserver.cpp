@@ -15,7 +15,7 @@ namespace tello_protocol
              * * Data[7:8]:short   - Seems to be POWER_ON timer.
              * * Data[9]:bool      - Unclear:
              * * * It becomes true upon first takeoff since POWER_ON, remains TRUE while ON_AIR for first flight since POWER_ON. \n
-             * 
+             *
              */
             PowerOnTimerInfo poti;
 
@@ -29,14 +29,13 @@ namespace tello_protocol
     }
 
     TelloPowerOnTimerMsgObserver::TelloPowerOnTimerMsgObserver(ISubject &telemetry, IPowerOnTimerMsgDataManager &power_on_timer_msg_data_mgr, std::shared_ptr<spdlog::logger> logger, spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_power_on_timer_msg_data_mgr(power_on_timer_msg_data_mgr),
+        : m_power_on_timer_msg_data_mgr(power_on_timer_msg_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
         m_logger->info(m_logger->name() + " Initiated.");
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloPowerOnTimerMsgObserver::~TelloPowerOnTimerMsgObserver()

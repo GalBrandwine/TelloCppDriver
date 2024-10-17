@@ -18,14 +18,13 @@ namespace tello_protocol
     }
 
     TelloAltLimitMsgObserver::TelloAltLimitMsgObserver(ISubject &telemetry, IAltLimitMsgDataManager &alt_limit_msg_data_mgr, std::shared_ptr<spdlog::logger> logger, spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_alt_limit_msg_data_mgr(alt_limit_msg_data_mgr),
+        : m_alt_limit_msg_data_mgr(alt_limit_msg_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
         m_logger->info(m_logger->name() + " Initiated.");
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloAltLimitMsgObserver::~TelloAltLimitMsgObserver()

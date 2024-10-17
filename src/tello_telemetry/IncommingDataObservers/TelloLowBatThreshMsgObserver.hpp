@@ -33,7 +33,6 @@ namespace tello_protocol
         ~TelloLowBatThreshMsgObserver();
 
     private:
-        ISubject &m_telemetry;
         ILowBatThreshMsgDataManager &m_low_batt_thresh_msg_data_mgr;
         std::shared_ptr<spdlog::logger> m_logger;
     };

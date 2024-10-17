@@ -14,19 +14,18 @@ namespace tello_protocol
             std::memcpy(&limit, &message_from_subject[12], sizeof(char));
             m_logger->info("ATT_LIMIT_MSG received: {}", std::to_string(limit));
             m_att_limit_msg_data_mgr.SetAttLimit(limit);
-            //cc 60 00 27 b0 58 10 00 00 00 30 35
+            // cc 60 00 27 b0 58 10 00 00 00 30 35
         }
     }
 
     TelloAttLimitMsgObserver::TelloAttLimitMsgObserver(ISubject &telemetry, IAttLimitMsgDataManager &att_limit_msg_data_mgr, std::shared_ptr<spdlog::logger> logger, spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_att_limit_msg_data_mgr(att_limit_msg_data_mgr),
+        : m_att_limit_msg_data_mgr(att_limit_msg_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
         m_logger->info(m_logger->name() + " Initiated.");
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloAttLimitMsgObserver::~TelloAttLimitMsgObserver()

@@ -16,15 +16,14 @@ namespace tello_protocol
         ILogDataConnectionInformationSupply &connect_info_data_mgr,
         std::shared_ptr<spdlog::logger> logger,
         spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_commander(commander),
+        : m_commander(commander),
           m_connect_info_data_mgr(connect_info_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
         m_logger->info(m_logger->name() + " Initiated.");
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloStickCommandsObserver::~TelloStickCommandsObserver()

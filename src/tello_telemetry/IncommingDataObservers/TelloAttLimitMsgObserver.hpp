@@ -33,7 +33,6 @@ namespace tello_protocol
         ~TelloAttLimitMsgObserver();
 
     private:
-        ISubject &m_telemetry;
         IAttLimitMsgDataManager &m_att_limit_msg_data_mgr;
         std::shared_ptr<spdlog::logger> m_logger;
     };

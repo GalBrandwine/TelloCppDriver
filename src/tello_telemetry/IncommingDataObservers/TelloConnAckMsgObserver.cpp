@@ -12,18 +12,16 @@ namespace tello_protocol
             m_logger->info("Connection request acknowledged!");
             m_conn_ack_msg_data_mgr.SetConnReqAck();
         }
-
     }
 
     TelloConnAckMsgObserver::TelloConnAckMsgObserver(ISubject &telemetry, IConnAckMsgDataManager &conn_ack_msg_data_mgr, std::shared_ptr<spdlog::logger> logger, spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_conn_ack_msg_data_mgr(conn_ack_msg_data_mgr),
+        : m_conn_ack_msg_data_mgr(conn_ack_msg_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
         m_logger->info(m_logger->name() + " Initiated.");
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloConnAckMsgObserver::~TelloConnAckMsgObserver()

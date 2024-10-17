@@ -14,12 +14,12 @@ namespace tello_protocol
 {
     /**
      * @brief Observe for LOG header information.
-     * Apon receiving new data, store the following in the TelloDataManager:
+     * Upon receiving new data, store the following in the TelloDataManager:
      * * Log version
      * * Log build date
      * * Current Log ID (setting this data in TelloDataManager should trigger attached sendAckLogId(id) function).
      * 
-     * Next, DataManager will notify its own observer apon new data:
+     * Next, DataManager will notify its own observer upon new data:
      * * One of them will be SendAckLogObserver
      */
     class TelloAckLogHeaderIdSenderObserver : public IObserver

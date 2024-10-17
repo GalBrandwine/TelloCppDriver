@@ -29,14 +29,13 @@ namespace tello_protocol
     }
 
     TelloLogHeaderMsgObserver::TelloLogHeaderMsgObserver(ISubject &telemetry, ILogHeaderMsgDataManager &log_header_msg_data_mgr, std::shared_ptr<spdlog::logger> logger, spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_log_header_msg_data_mgr(log_header_msg_data_mgr),
+        : m_log_header_msg_data_mgr(log_header_msg_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
         m_logger->info(m_logger->name() + " Initiated.");
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloLogHeaderMsgObserver::~TelloLogHeaderMsgObserver()

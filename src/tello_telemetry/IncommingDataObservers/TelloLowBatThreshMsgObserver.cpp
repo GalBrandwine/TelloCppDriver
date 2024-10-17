@@ -22,14 +22,13 @@ namespace tello_protocol
         ILowBatThreshMsgDataManager &low_batt_thresh_msg_data_mgr,
         std::shared_ptr<spdlog::logger> logger,
         spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_low_batt_thresh_msg_data_mgr(low_batt_thresh_msg_data_mgr),
+        : m_low_batt_thresh_msg_data_mgr(low_batt_thresh_msg_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
         m_logger->info(m_logger->name() + " Initiated.");
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloLowBatThreshMsgObserver::~TelloLowBatThreshMsgObserver()

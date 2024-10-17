@@ -32,7 +32,6 @@ namespace tello_protocol
         ~TelloLogDataMsgObserver();
 
     private:
-        ISubject &m_telemetry;
         ILogDataMsgDataManager &m_log_data_msg_data_mgr;
         std::shared_ptr<spdlog::logger> m_logger;
         std::shared_ptr<tello_protocol::LogData> m_log_data_processor;

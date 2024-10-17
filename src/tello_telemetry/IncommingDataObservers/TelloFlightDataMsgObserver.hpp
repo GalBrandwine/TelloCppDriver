@@ -33,7 +33,6 @@ namespace tello_protocol
         ~TelloFlightDataMsgObserver();
 
     private:
-        ISubject &m_telemetry;
         IFlightDataMsgDataManager &m_flight_data_msg_data_mgr;
         std::shared_ptr<spdlog::logger> m_logger;
         std::shared_ptr<tello_protocol::FlightData> m_flight_data_processor;

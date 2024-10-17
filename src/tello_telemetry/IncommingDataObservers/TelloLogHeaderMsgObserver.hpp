@@ -31,7 +31,6 @@ namespace tello_protocol
         virtual ~TelloLogHeaderMsgObserver();
 
     private:
-        ISubject &m_telemetry;
         ILogHeaderMsgDataManager &m_log_header_msg_data_mgr;
         std::shared_ptr<spdlog::logger> m_logger;
     };

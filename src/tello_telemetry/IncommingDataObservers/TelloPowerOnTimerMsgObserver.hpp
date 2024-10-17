@@ -33,7 +33,6 @@ namespace tello_protocol
         ~TelloPowerOnTimerMsgObserver();
 
     private:
-        ISubject &m_telemetry;
         IPowerOnTimerMsgDataManager &m_power_on_timer_msg_data_mgr;
         std::shared_ptr<spdlog::logger> m_logger;
     };

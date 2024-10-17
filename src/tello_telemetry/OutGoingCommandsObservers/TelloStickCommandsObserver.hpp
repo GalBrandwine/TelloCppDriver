@@ -15,7 +15,6 @@ namespace tello_protocol
         virtual ~TelloStickCommandsObserver();
 
     private:
-        TelloTelemetry &m_telemetry;
         ISendStickCommands &m_commander;
         ILogDataConnectionInformationSupply &m_connect_info_data_mgr;
         std::shared_ptr<spdlog::logger> m_logger;

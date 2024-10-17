@@ -18,14 +18,13 @@ namespace tello_protocol
     }
 
     TelloWifiMsgObserver::TelloWifiMsgObserver(ISubject &telemetry, IWifiMsgDataManager &wifi_msg_data_mgr, std::shared_ptr<spdlog::logger> logger, spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_wifi_msg_data_mgr(wifi_msg_data_mgr),
+        : m_wifi_msg_data_mgr(wifi_msg_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
         m_logger->info(m_logger->name() + " Initiated.");
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloWifiMsgObserver::~TelloWifiMsgObserver()

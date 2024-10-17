@@ -26,8 +26,7 @@ namespace tello_protocol
     }
 
     TelloLogDataMsgObserver::TelloLogDataMsgObserver(ISubject &telemetry, ILogDataMsgDataManager &log_data_msg_data_mgr, std::shared_ptr<spdlog::logger> logger, spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_log_data_msg_data_mgr(log_data_msg_data_mgr),
+        : m_log_data_msg_data_mgr(log_data_msg_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
@@ -35,7 +34,7 @@ namespace tello_protocol
 
         m_log_data_processor = std::make_shared<tello_protocol::LogData>(spdlog::stdout_color_mt("LogData"));
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloLogDataMsgObserver::~TelloLogDataMsgObserver()

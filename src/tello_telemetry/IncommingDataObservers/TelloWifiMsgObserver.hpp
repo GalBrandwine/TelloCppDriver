@@ -3,7 +3,6 @@
 #include "utils/tello_observer/ISubject.hpp"
 #include "utils/data_manager/IWifiMsgDataManager.hpp"
 
-
 #include <memory>
 #include <vector>
 #include "spdlog/spdlog.h"
@@ -22,10 +21,10 @@ namespace tello_protocol
         void Update(const std::vector<unsigned char> &message_from_subject) override;
 
         /**
-         * @brief Construct a new Tello Wifi strenght Msg Observer object.
-         * 
+         * @brief Construct a new Tello Wifi strength Msg Observer object.
+         *
          * @param telemetry ISubject that this object attach to.
-         * @param wifi_msg_data_mgr IWifiMsgDataManager Interface that TelloDataManager supplies, for inserting new Wifi strencgh message.
+         * @param wifi_msg_data_mgr IWifiMsgDataManager Interface that TelloDataManager supplies, for inserting new Wifi strength message.
          * @param logger spdlog::logger
          * @param lvl spdlog::level
          */
@@ -33,7 +32,6 @@ namespace tello_protocol
         ~TelloWifiMsgObserver();
 
     private:
-        ISubject &m_telemetry;
         IWifiMsgDataManager &m_wifi_msg_data_mgr;
         std::shared_ptr<spdlog::logger> m_logger;
     };

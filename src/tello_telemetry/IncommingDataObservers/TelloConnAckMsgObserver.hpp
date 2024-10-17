@@ -21,10 +21,10 @@ namespace tello_protocol
         void Update(const std::vector<unsigned char> &message_from_subject) override;
 
         /**
-         * @brief Construct a new Tello Connection-request-acknowledeg Msg Observer object.
+         * @brief Construct a new Tello Connection-request-acknowledge Msg Observer object.
          * 
          * @param telemetry ISubject that this object attach to.
-         * @param conn_ack_msg_data_mgr IConnAckMsgDataManager Interface that TelloDataManager supplies, for inserting new Connection-request-acknowledeg.
+         * @param conn_ack_msg_data_mgr IConnAckMsgDataManager Interface that TelloDataManager supplies, for inserting new Connection-request-acknowledge.
          * @param logger spdlog::logger
          * @param lvl spdlog::level
          */
@@ -32,7 +32,6 @@ namespace tello_protocol
         ~TelloConnAckMsgObserver();
 
     private:
-        ISubject &m_telemetry;
         IConnAckMsgDataManager &m_conn_ack_msg_data_mgr;
         std::shared_ptr<spdlog::logger> m_logger;
     };

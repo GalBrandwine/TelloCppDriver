@@ -30,8 +30,7 @@ namespace tello_protocol
     }
 
     TelloFlightDataMsgObserver::TelloFlightDataMsgObserver(ISubject &telemetry, IFlightDataMsgDataManager &flight_data_msg_data_mgr, std::shared_ptr<spdlog::logger> logger, spdlog::level::level_enum lvl)
-        : m_telemetry(telemetry),
-          m_flight_data_msg_data_mgr(flight_data_msg_data_mgr),
+        : m_flight_data_msg_data_mgr(flight_data_msg_data_mgr),
           m_logger(logger)
     {
         m_logger->set_level(lvl);
@@ -39,7 +38,7 @@ namespace tello_protocol
 
         m_flight_data_processor = std::make_shared<tello_protocol::FlightData>(spdlog::stdout_color_mt("FlightData"));
 
-        this->m_telemetry.Attach(this);
+        telemetry.Attach(this);
     }
 
     TelloFlightDataMsgObserver::~TelloFlightDataMsgObserver()
