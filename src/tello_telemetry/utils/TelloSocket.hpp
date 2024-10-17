@@ -8,9 +8,9 @@
 #include <functional>
 #include <thread>
 #include <cstdlib>
-#include "boost/asio.hpp"
+#include "asio.hpp"
 
-class TelloSocket : public ISender, public IReciever
+class TelloSocket : public ISender, public IReceiver
 {
 public:
     /**
@@ -42,13 +42,13 @@ private:
      */
     void do_receive();
 
-    std::mutex m_sendM;
+    std::mutex m_sendM; // TODO: Remove unused
 
-    bool m_is_bytes_received = false;
+    bool m_is_bytes_received = false; // TODO: Make atomic, and turn off the flag once consumed the bytes in Receive
     unsigned short m_port = 8889;
     unsigned short droneDataPort = 9000;
-    std::shared_ptr<boost::asio::ip::udp::socket> m_tello_socket;
-    boost::asio::ip::udp::endpoint m_sender_endpoint;
+    std::shared_ptr<asio::ip::udp::socket> m_tello_socket;
+    asio::ip::udp::endpoint m_sender_endpoint;
 
     size_t m_bytes_recvd;
     enum
@@ -58,7 +58,7 @@ private:
     std::atomic<char> data_[max_length];
 
     /// Private io_context used for performing logging operations.
-    boost::asio::io_context work_io_context_;
+    asio::io_context work_io_context_;
 
     /// Work for the private io_context to perform. If we do not give the
     /// io_context some work to do then the io_context::run() function will exit

@@ -16,7 +16,7 @@ void TelloSocket::do_receive()
     {
         m_tello_socket->wait(m_tello_socket->wait_read);
         m_bytes_recvd = m_tello_socket->receive_from(
-            boost::asio::buffer(data_, max_length), m_sender_endpoint);
+            asio::buffer(data_, max_length), m_sender_endpoint);
     }
     catch (const std::exception &e)
     {
@@ -44,7 +44,7 @@ void TelloSocket::Send(const std::string &cmd)
     try
     {
         m_tello_socket->wait(m_tello_socket->wait_write);
-        m_tello_socket->send_to(boost::asio::buffer(cmd, cmd.length()), m_sender_endpoint);
+        m_tello_socket->send_to(asio::buffer(cmd, cmd.length()), m_sender_endpoint);
     }
     catch (const std::exception &e)
     {
@@ -55,7 +55,7 @@ void TelloSocket::Send(const std::string &cmd)
 TelloSocket::~TelloSocket()
 {
     m_keep_running = false;
-    boost::system::error_code ignored;
+    asio::error_code ignored;
 
     if (m_tello_socket != nullptr)
     {
@@ -72,8 +72,8 @@ TelloSocket::~TelloSocket()
 
 TelloSocket::TelloSocket(const std::string &droneIp, const short droneCommandPort, const short droneDataPort)
 {
-    m_tello_socket = std::make_shared<boost::asio::ip::udp::socket>(work_io_context_, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), droneDataPort));
-    m_sender_endpoint = boost::asio::ip::udp::endpoint(boost::asio::ip::address_v4::from_string(droneIp), droneCommandPort);
+    m_tello_socket = std::make_shared<asio::ip::udp::socket>(work_io_context_, asio::ip::udp::endpoint(asio::ip::udp::v4(), droneDataPort));
+    m_sender_endpoint = asio::ip::udp::endpoint(asio::ip::address_v4::from_string(droneIp), droneCommandPort);
 
     m_in_socket_thread = std::thread(std::bind(&TelloSocket::in_data_worker, this));
 }

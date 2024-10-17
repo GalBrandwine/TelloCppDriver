@@ -111,7 +111,7 @@ TEST(WetTelloCommandTests, EmergencyCommandTest)
  * * Connect to drone.
  * * Send GetLowBatThresh() command
  * Test:
- * * See if Received LowBatThresh and stored corresclty.
+ * * See if Received LowBatThresh and stored correctly.
  */
 TEST(WetTelloCommandTests, ThrowAndGoTest)
 {
@@ -198,7 +198,7 @@ TEST(WetTelloCommandTests, PalmLandTest)
     while (dummy.GetFlightData().height <= 8)
     {
 
-        tello.GetLogger()->info("Takingoff, Waiting for drone to reach  height of 80 [cm]");
+        tello.GetLogger()->info("Takeoff, Waiting for drone to reach  height of 80 [cm]");
         tello.GetLogger()->info("Current height: {}", dummy.GetFlightData().height);
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
@@ -285,7 +285,7 @@ TEST(WetTelloCommandTests, SendFlipCommands)
 
     while (dummy.GetFlightData().fly_mode == 11)
     {
-        tello.GetLogger()->info("Takingoff");
+        tello.GetLogger()->info("Takeoff");
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
@@ -439,10 +439,10 @@ TEST(WetTelloCommandTests, SendFlipCommands)
 }
 
 /**
-* @test Test if driver allert about drone disconnection.
+* @test Test if driver alert about drone disconnection.
 * Manually turn off the drone after connection
 **/
-TEST(WetTelloSticksCommandTest, TestDisconnectionAllert)
+TEST(WetTelloSticksCommandTest, TestDisconnectionAlert)
 {
     // Setup
     TelloDriver tello(spdlog::level::debug);

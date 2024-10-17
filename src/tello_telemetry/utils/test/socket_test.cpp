@@ -6,7 +6,7 @@ using namespace std::chrono_literals;
 #include <thread>
 using asio::ip::udp;
 
-// Lowest level testing: test aisio library async capabilities
+// Lowest level testing: test asio library async capabilities
 TEST(AsioSocketAsyncOperations, TrySendConnReq)
 {
 
@@ -23,7 +23,7 @@ TEST(AsioSocketAsyncOperations, TrySendConnReq)
     for (auto &letter : conn)
         connreq[index++] = letter;
     s.do_send(connreq, conn.length());
-    // io_context.run(); // <--- BLOKING
+    // io_context.run(); // <--- BLOCKING
 
     int timeout_ticks = 500;
     while (!s.is_bytes_recvd)
@@ -43,7 +43,7 @@ TEST(AsioSocketAsyncOperations, TrySendConnReq)
 // Mid-level testing: test if 'connReq' being sent correctly
 TEST(TelloSocketAsync, TrySendConnReq)
 {
-    // Implememted using this example:
+    // Implemented using this example:
     // https://www.boost.org/doc/libs/1_66_0/doc/html/boost_asio/example/cpp03/services/logger_service.hpp
     TelloSocket tello_socket("192.168.10.1", 8889, 9000);
 
@@ -69,7 +69,7 @@ TEST(TelloSocketAsync, TrySendConnReq)
  * Test if 'connAck' being received correctly.
  * If so. this means a connection has been established,
  *  */
-TEST(TelloSocketAsync, TrySendRecieveConnReq)
+TEST(TelloSocketAsync, TrySendReceiveConnReq)
 {
     TelloSocket tello_socket("192.168.10.1", 8889, 9000);
 
@@ -78,13 +78,13 @@ TEST(TelloSocketAsync, TrySendRecieveConnReq)
     int timeout_ticks = 500;
 
     std::vector<unsigned char> received_data(1024);
-    int bytes_recieve = 0;
+    int bytes_receive = 0;
     // Run
-    while (bytes_recieve != 11)
+    while (bytes_receive != 11)
     {
         tello_socket.Send(msg);
         std::this_thread::sleep_for(20ms);
-        bytes_recieve = tello_socket.Receive(received_data);
+        bytes_receive = tello_socket.Receive(received_data);
         if (timeout_ticks-- < 0)
         {
             break;
@@ -111,13 +111,13 @@ TEST(TelloSocketAsync, TrySendRecieveConnReq)
 //     int timeout_ticks = 500;
 
 //     std::vector<unsigned char> received_data(1024);
-//     int bytes_recieve = 0;
+//     int bytes_receive = 0;
 //     // Run
-//     while (bytes_recieve != 11)
+//     while (bytes_receive != 11)
 //     {
 //         tello_socket.Send(msg);
 //         std::this_thread::sleep_for(20ms);
-//         bytes_recieve = tello_socket.Receive(received_data);
+//         bytes_receive = tello_socket.Receive(received_data);
 //         if (timeout_ticks-- < 0)
 //         {
 //             break;

@@ -2,9 +2,9 @@
 #include "vector"
 #include "asio.hpp"
 using asio::ip::udp;
-class IReciever
+class IReceiver
 {
 public:
     virtual int Receive(std::vector<unsigned char> &) = 0;
-    virtual ~IReciever(){};
+    virtual ~IReceiver(){};
 };

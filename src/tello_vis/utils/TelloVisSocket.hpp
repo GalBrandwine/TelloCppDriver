@@ -22,7 +22,7 @@ public:
      * @brief Send command to socket.
      * 1. Wait for socket to be in *read* mode.
      * 2. Block until operation complete.
-     * 
+     *
      * @param cmd const std::string & filled with data.
      */
     // void Send(const std::string &cmd) override;
@@ -35,15 +35,15 @@ private:
      * @brief Synced socket receive.
      * 1.Wait for socket to be ready to *read*.
      * 2.**Block** until socket return with new data.
-     * 
+     *
      */
     void do_receive();
 
-    std::mutex m_sendM;
+    std::mutex m_sendM; // TODO: Remove unused
 
     bool m_is_bytes_received = false;
     // unsigned short m_port = 8889;
-    unsigned short m_droneVideoPort = 6038; // Maybe to this port: 11111. Video listening is on lochalhost.
+    unsigned short m_droneVideoPort = 6038; // Maybe to this port: 11111. Video listening is on localhost.
     std::shared_ptr<boost::asio::ip::udp::socket> m_tello_socket;
     // boost::asio::ip::udp::endpoint m_sender_endpoint;
 

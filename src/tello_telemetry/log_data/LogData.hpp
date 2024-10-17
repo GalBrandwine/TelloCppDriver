@@ -38,7 +38,7 @@ namespace tello_protocol
          * @brief Preprocess raw data before updating inner data containers (LogNewMvoFeedback and LogImuAtti)
          * Based on the [TelloPy](https://github.com/hanyazou/TelloPy/blob/develop-0.7.0/tellopy/_internal/protocol.py#L316) preprocess methods.
          * 
-         * @param data filled with raw bytes received in IReciever socket.
+         * @param data filled with raw bytes received in IReceiver socket.
          */
         void Update(const std::vector<unsigned char> &data);
 

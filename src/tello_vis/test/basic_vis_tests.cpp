@@ -12,7 +12,7 @@
 #include <opencv2/highgui.hpp>
 /**
  * @test The most basic test
-*/
+ */
 TEST(TelloVisSocketBasicTest, SimpleFirstInstantiation)
 {
     TelloVisSocket tello_vis_socket();
@@ -21,8 +21,8 @@ TEST(TelloVisSocketBasicTest, SimpleFirstInstantiation)
 
 /**
  * @test See if trying to received when drone is offline working as expected.
- * 
-*/
+ *
+ */
 TEST(TelloVisSocketBasicTest, ReceiveWhenNotConnectedTest)
 {
     std::unique_ptr<IVisReceiver> tello_vis_socket = std::make_unique<TelloVisSocket>();
@@ -34,8 +34,8 @@ TEST(TelloVisSocketBasicTest, ReceiveWhenNotConnectedTest)
 }
 
 /**
- * @test See if bytes received working propely, when connected to the drone.
- * 
+ * @test See if bytes received working properly, when connected to the drone.
+ *
  * SETUP:
  * * Connect to the drone using TelloSocket.
  * * Initiate a TelloVisSocket.
@@ -63,15 +63,15 @@ TEST(TelloVisSocketBasicTest, ReceiveWhenConnectedTest)
     tello_commander.SendConnReq();
     tello_telemetry.StartListening();
 
-    auto simple_keep_alive = std::thread([&]() {
+    auto simple_keep_alive = std::thread([&]()
+                                         {
         while (keep_alive)
         {
             tello_commander.SendStickCommands();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        }
-    });
+        } });
 
-    //Test
+    // Test
     int times = 1000;
     std::vector<unsigned char> data(2000);
     tello_commander.SendStartVideo();
@@ -96,9 +96,9 @@ TEST(TelloVisSocketBasicTest, ReceiveWhenConnectedTest)
 
 /**
  * @test Send a start_streaming request. And use ffmpeg to decipher the incoming data.
- * 
+ *
  * @note This command should show video stream: `ffplay udp://192.168.10.1:6038`
- * 
+ *
  * SETUP:
  * * Connect to the drone using TelloSocket.
  * * Initiate a TelloVisSocket.
@@ -130,16 +130,15 @@ TEST(TelloVisSocketBasicTest, SimpleStartStreamingRequestTest)
     // Run
     tello_commander.SendConnReq();
 
-    auto simple_keep_alive = std::thread([&]() {
+    auto simple_keep_alive = std::thread([&]()
+                                         {
         while (keep_alive)
         {
             // tello_commander.SendStickCommands();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        }
-    });
+        } });
 
-    
-    //Test
+    // Test
     tello_commander.SendStartVideo();
     int bytes_received = 0;
 
@@ -159,7 +158,7 @@ TEST(TelloVisSocketBasicTest, SimpleStartStreamingRequestTest)
 
 /**
  * @test Try to successfully create an image out of a stream of bytes.
- * 
+ *
  * SETUP:
  * * Connect to the drone using TelloSocket.
  * * Initiate a TelloVisSocket.
@@ -194,15 +193,16 @@ TEST(TelloVisSocketBasicTest, CreatingCVmatOutOfPacketStream)
     tello_commander.SendConnReq();
     tello_telemetry.StartListening();
 
-    auto simple_keep_alive = std::thread([&]() {
+    auto simple_keep_alive = std::thread([&]()
+                                         {
         while (keep_alive)
         {
             tello_commander.SendStickCommands();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        }
-    });
+        } });
 
-    auto decode_frames = [&]() {
+    auto decode_frames = [&]()
+    {
         size_t next = 0;
 
         try
@@ -262,7 +262,7 @@ TEST(TelloVisSocketBasicTest, CreatingCVmatOutOfPacketStream)
         }
     };
 
-    //Test
+    // Test
     tello_commander.SendExposure(0);
     tello_commander.SendVideoEncoderRate();
     tello_commander.SendStartVideo();
