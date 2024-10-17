@@ -111,6 +111,12 @@ cd build/examples
 ./simple_connection
 ```
 
+## Generating doxygen
+
+```shell
+doxygen ./docs/TelloCppDoxygen
+```
+
 ### Projects that help me bring up this monstrosity :)
 
 - [tello_ros project](https://github.com/clydemcqueen/tello_ros).
